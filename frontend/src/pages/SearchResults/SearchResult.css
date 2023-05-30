@@ -1,0 +1,11 @@
+.searchBlock a{
+    text-decoration: none;
+    color: black;
+}
+.cardImage{
+    height: 400px;
+    width: 100%;
+}
+.searchCard  em{
+    background: #29a19c;
+}

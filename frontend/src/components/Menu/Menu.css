@@ -1,0 +1,70 @@
+/*menu css customizado*/
+.menuweb .nav-link{
+    color: white;
+    text-decoration: none;
+    list-style: none;
+    display: inline-block;    
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor:pointer;
+}
+.menuweb .nav-link.active{
+    color: white;
+    text-decoration: underline 3px;
+    text-decoration-color: #00a29d;
+}
+.menuweb .dropdown-item.active{
+    color: black;
+    text-decoration: underline 3px;
+    text-decoration-color: #00a29d;
+    background-color:transparent;
+}
+.menuweb .nav-link:hover{
+    text-decoration: underline 3px;
+    text-decoration-color: #00a29d;
+    
+}
+.menuweb button{
+    background-color: transparent;
+    border-color: #00a29d;
+}
+.menuweb .navbar-toggler{
+    background-color: transparent;
+    border-color: #fff;
+}
+.menuweb .navbar-toggler:hover{
+    background-color: transparent;
+    border-color: #00a29d;
+}
+.menuweb button:hover{
+    background-color: #00a29d;
+    border-color: #00a29d;
+}
+.menuweb .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+/*Menu collapsado con canvas*/
+#offcanvasMenuweb{
+    background-color: #00a29d;
+}
+#offcanvasMenuweb button{
+    background-color: #222831;
+    border:solid 2px #00a29d;
+}
+#offcanvasMenuweb button:hover{
+    background-color: #00a29d;
+    
+}
+#offcanvasMenuweb .navbar-nav .dropdown-menu{
+    background-color: #00a29d;
+    color: white;
+    padding: 10px;
+    border: none;
+}
+#offcanvasMenuweb .navbar-nav .show>.nav-link{
+    color: white;
+}
+#offcanvasMenuweb .dropdown-item:hover{
+    background-color: #000;
+    opacity: .5;
+}

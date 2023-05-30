@@ -1,0 +1,59 @@
+.modalTicket{
+    color: white;   
+    perspective: 1000px;
+}
+.modalTicket .modal-content{
+    border-radius: 50px;
+    width: 100%;
+}
+.modalTicket .modal-body{
+    background-image: url(../../assets/img/fondoVouches.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    aspect-ratio: 21/9;   
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 40px 5px rgba(255,255,255,.4);
+    
+}
+
+.modalTicket span{
+    background-color: #29a19c;
+    padding: 10px;
+    border-radius: 50px;    
+}
+.modalTicket img{
+   padding: 10px;
+}
+.modal-90w {
+    max-width: none!important;
+    width: 70%;
+}
+.modalTicket h4{
+    font-family: GrandHotel-Regular;
+    font-size: 3em;
+}
+@media (max-width: 1024px) { 
+    .modal-90w {
+        max-width: none!important;
+        width: 70%;
+    }
+    .modal-body h1{
+        font-size: 2em;
+    }
+    .modal-body p{
+        font-size: 0.9em;
+    }
+}
+@media (max-width: 576px) { 
+    .modal-90w {
+        max-width:inherit !important;
+        width: auto;                
+    }
+    .modalTicket .modal-body{
+        aspect-ratio: 9/12;   
+    }
+    
+}

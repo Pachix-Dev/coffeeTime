@@ -1,0 +1,50 @@
+.blog-header-title{
+    text-align: center;
+    background-color: #29a19c;
+    padding: 20px;
+    font-family: 'GrandHotel-Regular';
+}
+.blog-wrapper h1{
+    font-family: 'GrandHotel-Regular';
+    font-size: 4em;
+}
+.blog-wrapper h5{
+    font-family: Montserrat-Bold;
+}
+.blog-wrapper p{
+    font-family: Montserrat-Regular;
+}
+.blog-header-title h1{
+    font-size: 5em;
+}
+.list-browse-categories{
+    overflow-x: scroll;
+    height: 260px;
+    list-style: none;    
+    margin: 0px;
+    padding: 0px 6px 0px 0px;
+    white-space: nowrap;
+    text-align: left;
+    
+}
+.list-browse-categories li{
+    display: inline-block;
+    list-style: none;      
+    margin: 15px;
+}
+.ct-browse-img img{
+    width: 240px;
+    height: 160px;  
+}
+.ct-browse-info img{
+    width: 20px;
+}
+@media (max-width: 1024px) { 
+    .allCategories{
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(100px,1fr)
+        )
+    }
+    .LastestPosts{margin-top: 2em;}
+}

@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "title": "Education",
+      "categoryDesc": "Evergreen educational blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Education-Education.png"
+    },
+    {
+      "id": 2,
+      "title": "Fitness",
+      "categoryDesc": "Evergreen fitness blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Fitness-Fitness.png"
+    },
+    {
+      "id": 3,
+      "title": "Gaming",
+      "categoryDesc": "Evergreen gaming blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Gaming-Games.png"
+    },
+    {
+      "id": 4,
+      "title": "Health",
+      "categoryDesc": "Evergreen health blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Health-Health.png"
+    },
+    {
+      "id": 5,
+      "title": "Lifestyle",
+      "categoryDesc": "Evergreen lifestyle blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Lifestyle-Lifestyle.png"
+    },
+    {
+      "id": 6,
+      "title": "Luxury",
+      "categoryDesc": "Evergreen luxury blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Luxury-Luxury.png"
+    },
+    {
+      "id": 7,
+      "title": "Psychology",
+      "categoryDesc": "Evergreen psychology blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Psychology-Psychology.png"
+    },
+    {
+      "id": 8,
+      "title": "Travel",
+      "categoryDesc": "Evergreen travel blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Travel-Travel.png"
+    },
+    {
+      "id": 9,
+      "title": "Technology",
+      "categoryDesc": "Evergreen technology blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Technology-technology.png"
+    },
+    {
+      "id": 10,
+      "title": "Weight Loss",
+      "categoryDesc": "Evergreen weight loss blogs.",
+      "categoryImage": "https://s3.us-west-004.backblazeb2.com/encurate/static/blogsapi/1/Weight_Loss-weight-loss.png"
+    }
+  ]

@@ -1,0 +1,21 @@
+/*fuentes para la pagina*/
+@font-face {
+  font-family: "GrandHotel-Regular";
+  src: local("GrandHotel-Regular"),
+    url("./fonts/GrandHotel-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: local("Montserrat-Bold"),
+    url("./fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: local("Montserrat-Regular"),
+    url("./fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+

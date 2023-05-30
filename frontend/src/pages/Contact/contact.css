@@ -1,0 +1,26 @@
+.form-contact button{
+    background-color: #29a19c;
+    border: none;
+    font-weight: bold;
+}
+.form-contact button:hover{
+    background-color: white;
+    color: black;
+}
+.valid-feedback{
+    color: #29a19c;
+}
+.form-check-input:checked{
+    background-color: #29a19c;
+    border: none;
+}
+.was-validated .form-check-input:valid~.form-check-label{
+    color: #29a19c;
+}
+.was-validated .form-control:valid{
+    border-color: #29a19c;
+}
+.was-validated .form-control:valid:focus{
+    border-color: rgb(41, 161, 156);
+    box-shadow: 0 0 0 0.25rem rgba(41, 161, 156);
+}

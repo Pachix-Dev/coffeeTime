@@ -1,0 +1,64 @@
+/*footerweb*/
+.footerweb{
+    background-color: #29a19c;
+    padding-bottom: 20px;
+    display: block;
+    position: relative;
+}
+.footerweb .menufotter{
+    color: white;
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+}
+.footerweb .menufotter li{
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.footerweb h3{
+    color: white;
+    font-family: 'Montserrat-bold';
+}
+.menu2footerweb{
+    color: white;
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+}
+.footerweb p{
+    color: white;
+}
+.footerweb a{
+    text-decoration: none;
+    color: white; 
+    padding-top: 10px;
+    font-size: 19px;
+}
+.footerweb a:hover{
+    color: #222831; 
+}
+.footerweb svg{
+    fill: white;
+}
+.footerweb svg:hover{
+    fill: #222831;
+}
+.cupcoffeefooter{
+    width: 100px;
+    height: 100px;
+}
+.socialMediaLinks a{
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}
+@media screen and (max-width: 425px) {
+    .footerweb{text-align: center;}
+    .socialMediaLinks{
+        margin: 15px;
+    }
+    .footerweb div{
+        margin-bottom: 10px;
+    }
+}

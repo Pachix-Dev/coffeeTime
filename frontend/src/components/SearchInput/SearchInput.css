@@ -1,0 +1,28 @@
+#resultCoincidences{
+    position: absolute;    
+    top: 65px;
+    right: 0px;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+.coincidences-item em{
+    background: #29a19c;
+}
+.coincidences-item{
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgb(35 38 59/5%), 0 1px 3px rgb(35 38 59/15%);
+    display: flex;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    padding: 0.5rem;
+}
+.coincidences-item a {
+    text-decoration: none;
+    color: black;
+}
+.coincidences-item:hover {
+    border: solid 2px #29a19c;
+}

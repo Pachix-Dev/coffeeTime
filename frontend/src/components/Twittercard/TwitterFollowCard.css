@@ -1,0 +1,40 @@
+/*css twitter following*/
+.custom-canvas-twitter{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1
+}
+.textcustomer img{
+    border-radius: 50%
+}
+.pach-followcard-button{
+    cursor: pointer;
+    margin-left: 16px;
+    border: 0px;
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-weight: bold;
+    transition: 0.5s ease-in-out 0s;
+}
+.pach-followcard-button:hover{
+    transform: scale(1.1);
+    background-color: #29a19c;
+}
+.pach-followcard-button.is-following:hover{
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    border: none;
+}
+
+.pach-followcard-button.is-following:hover .pach-followcard-seguir{
+    display: none;
+}
+.pach-followcard-button.is-following:hover .pach-followcard-dejarseguir{
+    display: block;
+}
+.pach-followcard-dejarseguir{
+    display: none;
+}

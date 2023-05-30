@@ -1,0 +1,35 @@
+.wrapperIcons{
+    position: absolute;
+    inset: 0;    
+    overflow: hidden;
+    z-index: 9;
+}
+
+.icons{
+  position: relative;
+  height: 100%;
+}
+.icons svg{
+    padding: 1rem;
+    width: 6rem;
+    height: 6rem;
+    opacity: 0;
+    fill: white;
+    position: absolute;
+}
+.animate-moving-background{
+    animation: moving-background 5s ease-in-out;
+}
+@keyframes moving-background {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    66% {
+        opacity: .4;
+    }
+    100% {
+        transform: translateY(-150px);
+        opacity: 0;
+    }
+}
