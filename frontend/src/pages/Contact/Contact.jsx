@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/esm/Container'
 import { sendMessageService } from '../../services/SendMessageServicie'
 import './contact.css'
 import { motion } from 'framer-motion'
+
 export function Contact () {
   const [validated, setValidated] = useState(false)
   const [message, setMessage] = useState(null)
@@ -20,12 +21,14 @@ export function Contact () {
     } else {
       event.preventDefault()
       const formData = Object.fromEntries(new window.FormData(event.target))
-      sendMessageService(formData).then((resp) => {
+      sendMessageService(formData)
+      .then((resp) => {
         if (resp.$metadata.httpStatusCode === 200) {
           setMessage('Your message has been sent sucessfully!!')
-        } else {
-          setMessage('Sorry we couldn\'t send your message try again later')
-        }
+        } 
+      }).catch(err =>{
+        console.log(err)        
+        setMessage('Sorry we couldn\'t send your message try again later')       
       }) 
     }
     setValidated(true)

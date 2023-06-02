@@ -1,22 +1,25 @@
-const express = require('express')
-const path = require('path')
+require('dotenv').config()
+require('./mongo')
 
-const drinks = require('./mocks/with-results.json')
+const express = require('express')
 const cors = require('cors')
 const app = express()
 app.use(cors())
+app.use(express.json())
 
-app.use(express.static(path.join(__dirname, '/frontend/dist')))
-app.get('/coffeeTime*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/frontend/dist', 'index.html'))
-})
+const { unknownEndpoint, errorHandler } = require('./utils/middleware')
 
-// api fake de drinks
-app.get('/drinks', (request, response) => {
-  response.json(drinks)
-})
+const drinksRouter = require('./controllers/drinks')
+const usersRouter = require('./controllers/users')
 
-const PORT = process.env.PORT || 3001
+app.use('/api/drinks', drinksRouter)
+app.use('/api/users', usersRouter)
+
+app.use(unknownEndpoint)
+app.use(errorHandler)
+
+const PORT = process.env.PORT
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)
 })

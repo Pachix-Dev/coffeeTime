@@ -22,9 +22,9 @@ export function sendMessageService (dataForm) {
   )
 
   const options = new SendEmailCommand({
-    Source: 'pachi.claros@gmail.com',
+    Source: 'hola@yapura.com.mx',
     Destination: {
-      ToAddresses: ['pachi.claros@gmail.com']
+      ToAddresses: [dataForm.email]
     },
     Message: {
       Body: {
