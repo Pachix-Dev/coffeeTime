@@ -11,9 +11,11 @@ const { unknownEndpoint, errorHandler } = require('./utils/middleware')
 
 const drinksRouter = require('./controllers/drinks')
 const usersRouter = require('./controllers/users')
+const loginRouter = require('./controllers/login')
 
 app.use('/api/drinks', drinksRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/login', loginRouter)
 
 app.use(unknownEndpoint)
 app.use(errorHandler)

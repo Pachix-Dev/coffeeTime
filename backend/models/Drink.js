@@ -4,9 +4,9 @@ const { Schema, model } = mongoose
 
 const drinkSchema = new Schema({
   title: { type: String, required: true, unique: false },
-  description: String,
-  ingredients: Array,
-  image: String,
+  description: { type: String, required: true },
+  ingredients: { type: Array, required: true },
+  image: { type: String, required: true },
   date: Date,
   user: {
     type: Schema.Types.ObjectId,

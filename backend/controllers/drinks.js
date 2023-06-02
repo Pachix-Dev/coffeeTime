@@ -1,7 +1,7 @@
 const drinksRouter = require('express').Router()
 const Drink = require('../models/Drink')
 const User = require('../models/User')
-
+const userExtractor = require('../utils/userExtractor')
 // get all drinks
 drinksRouter.get('/', async (request, response, next) => {
   try {
@@ -34,8 +34,10 @@ drinksRouter.get('/:id', async (request, response, next) => {
   }
 })
 
-drinksRouter.post('/', async (request, response, next) => {
-  const { title, description, ingredients, image, userId } = request.body
+drinksRouter.post('/', userExtractor, async (request, response, next) => {
+  const { title, description, ingredients, image } = request.body
+  // recuperamos userId de request
+  const { userId } = request
 
   const user = await User.findById(userId)
 
@@ -50,7 +52,6 @@ drinksRouter.post('/', async (request, response, next) => {
 
   try {
     const savedDrink = await newDrink.save()
-
     user.drinks = user.drinks.concat(savedDrink._id)
     await user.save()
 
@@ -60,7 +61,7 @@ drinksRouter.post('/', async (request, response, next) => {
   }
 })
 
-drinksRouter.put('/:id', async (request, response, next) => {
+drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
   const drink = request.body
 
@@ -79,9 +80,9 @@ drinksRouter.put('/:id', async (request, response, next) => {
   }
 })
 
-drinksRouter.delete('/:id/:userId', async (request, response, next) => {
-  const { id, userId } = request.params
-
+drinksRouter.delete('/:id/', userExtractor, async (request, response, next) => {
+  const { id } = request.params
+  const { userId } = request
   try {
     await Drink.findByIdAndRemove(id)
     await User.updateOne({ _id: userId },

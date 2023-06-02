@@ -4,8 +4,8 @@ const { Schema, model } = mongoose
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
-  name: String,
-  passwordHash: String,
+  name: { type: String, required: true },
+  passwordHash: { type: String, required: true },
   drinks: [
     {
       type: Schema.Types.ObjectId,
