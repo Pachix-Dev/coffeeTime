@@ -19,6 +19,7 @@ import ListPostsByTag from './components/Blog/ListPostsByTags'
 import { Contact } from './pages/Contact/Contact'
 import { Email } from './components/Email/Email'
 import { Helmet } from 'react-helmet'
+import { Login } from './pages/Admin/Login'
 
 export function App () {
   return (
@@ -73,6 +74,7 @@ export function App () {
         />
         <Route path='/search/:keyword' element={<SearchResults />} />
         <Route path='/email' element={<Email />} />
+        <Route path='/admin/login' element={<Login />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
 

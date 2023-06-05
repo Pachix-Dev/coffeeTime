@@ -15,6 +15,9 @@ export function SearchInput () {
   const { setShow } = useContext(MenuContext)
 
   function handleChange (event) {
+    if (event.target.value.startsWith(' ')) {
+      return null
+    }
     getDrinks(event.target.value)
   }
 
@@ -39,6 +42,8 @@ export function SearchInput () {
           placeholder='Search drink'
           className='me-2'
           aria-label='Search drink'
+          pattern='^\S.*$'
+          title='Invalid starting with space'
           autoComplete='off'
           autoCorrect='off'
           autoCapitalize='off'
