@@ -20,6 +20,7 @@ import { Contact } from './pages/Contact/Contact'
 import { Email } from './components/Email/Email'
 import { Helmet } from 'react-helmet'
 import { Login } from './pages/Admin/Login'
+import { Unsubscribe } from './components/Unsubscribe'
 
 export function App () {
   return (
@@ -74,8 +75,15 @@ export function App () {
         />
         <Route path='/search/:keyword' element={<SearchResults />} />
         <Route path='/email' element={<Email />} />
+        <Route path='/unsubscribe' element={<Unsubscribe />} />
+
         <Route path='/admin/login' element={<Login />} />
+        <Route path='/admin/createDrink' element={<Login />} />
+        <Route path='/admin/updateDrink' element={<Login />} />
+        <Route path='/admin/deleteDrink' element={<Login />} />
+
         <Route path='*' element={<ErrorPage />} />
+
       </Routes>
 
       <LazyFooter />

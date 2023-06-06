@@ -70,6 +70,9 @@ export function Email (props) {
           <Text style={footerText}>
             You're receiving this email because you visit my website and use the contact form.
           </Text>
+          <Link href='https://yapura.com.mx/coffeeTime/unsubscribe' style={footerLink}>
+            Unsubscribe from emails like this{' '}
+          </Link>
           <Hr style={footerDivider} />
           <Text style={footerAddress}>
             <strong>FYC</strong>, León Guanajuato México
@@ -177,4 +180,14 @@ const footerAddress = {
   fontSize: '12px',
   lineHeight: '15px',
   color: '#9199a1'
+}
+
+const footerLink = {
+  display: 'inline-block',
+  color: '#9199a1',
+  textDecoration: 'underline',
+  fontSize: '12px',
+  marginRight: '10px',
+  marginBottom: '0',
+  marginTop: '8px'
 }

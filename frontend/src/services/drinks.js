@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'https://yapura.com.mx/api/drinks/'
+const baseUrl = '/api/drinks/'
 
 let token = null
 

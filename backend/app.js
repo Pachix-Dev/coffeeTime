@@ -2,6 +2,8 @@ require('dotenv').config()
 require('./mongo')
 
 const express = require('express')
+const path = require('path')
+
 const cors = require('cors')
 const app = express()
 app.use(cors())
@@ -20,6 +22,12 @@ app.use('/api/drinks', drinksRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/recaptcha', coffeeTimeRecaptchaRouter)
 
+app.use('/', express.static(path.join(__dirname, '/portfolio')))
+
+app.use('/coffeeTime', express.static(path.join(__dirname, '../frontend/dist')))
+app.get('/coffeeTime*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'))
+})
 app.use(unknownEndpoint)
 app.use(errorHandler)
 
