@@ -16,18 +16,26 @@ const drinksRouter = require('./controllers/drinks')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const coffeeTimeRecaptchaRouter = require('./controllers/coffeeTimeRecaptcha')
+const resendWebhooksRouter = require('./controllers/resendWebhooks')
 
 app.use('/api/login', loginRouter)
 app.use('/api/drinks', drinksRouter)
 app.use('/api/users', usersRouter)
+
+// api google recaptcha
 app.use('/api/recaptcha', coffeeTimeRecaptchaRouter)
 
+// api Resend mail webhooks
+app.use('/api/resend-webhooks', resendWebhooksRouter)
+// portfolio website
 app.use('/', express.static(path.join(__dirname, '/portfolio')))
 
+// coffeeTime website
 app.use('/coffeeTime', express.static(path.join(__dirname, '../frontend/dist')))
 app.get('/coffeeTime*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'))
 })
+
 app.use(unknownEndpoint)
 app.use(errorHandler)
 

@@ -9,29 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "3.332.0",
-    "@react-email/button": "0.0.8",
-    "@react-email/components": "0.0.6",
-    "@react-email/html": "0.0.4",
-    "@react-email/render": "0.0.7",
-    "aws-sdk": "2.1372.0",
     "bootstrap": "5.2.3",
-    "canvas-confetti": "1.6.0",
-    "formik": "2.2.9",
+    "canvas-confetti": "1.6.0",    
     "framer-motion": "10.12.9",
-    "intersection-observer": "0.12.2",
-    "just-debounce-it": "3.2.0",
+    "intersection-observer": "0.12.2",    
     "react": "18.2.0",
     "react-bootstrap": "2.7.2",
     "react-content-loader": "6.2.1",
     "react-dom": "18.2.0",
-    "react-email": "1.9.3",
     "react-google-recaptcha": "3.1.0",
     "react-helmet": "6.1.0",
     "react-router": "6.10.0",
-    "react-router-dom": "6.10.0",
-    "uuid": "9.0.0",
-    "yup": "1.1.1"
+    "react-router-dom": "6.10.0"   
   },
   "devDependencies": {
     "@types/react": "18.0.28",
@@ -39,7 +28,7 @@
     "@vitejs/plugin-react-swc": "3.0.0",
     "vite": "4.3.9"
   },
-  "proxy":"http://127.0.0.1:3001/",
+  "proxy": "http://127.0.0.1:3001/",
   "homepage": "coffeeTime"
   
 }

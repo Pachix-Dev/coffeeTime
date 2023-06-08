@@ -1,7 +1,6 @@
 /* eslint-disable no-trailing-spaces */
 import { useState, useRef } from 'react'
 import Container from 'react-bootstrap/esm/Container'
-import { sendMessageService } from '../../services/SendMessageServicie'
 import './contact.css'
 import { motion } from 'framer-motion'
 
@@ -41,29 +40,14 @@ export function Contact () {
       setCaptcha(false)
       const formData = Object.fromEntries(new window.FormData(event.target))
       try {
-        await axios.post(baseUrl, { token })
-          .then(res => {
-            if (res.data.success) {              
-              sendMessageService(formData)
-                .then((resp) => {
-                  if (resp.$metadata.httpStatusCode === 200) {
-                    setMessage('Your message has been sent sucessfully!!')                   
-                    toastRef.current.tooggleVisibility({ bg: 'success' })
-                  } 
-                }).catch(() => {                       
-                  setMessage('Sorry we couldn\'t send your message try again later')
-                  
-                  toastRef.current.tooggleVisibility({ bg: 'danger' })
-                })
-            } else {
-              setMessage('Sorry we couldn\'t verify you are not robot')
-              toastRef.current.tooggleVisibility({ bg: 'danger' })
-            }
-          })
-          .catch(() => {
-            setMessage('Sorry service not available  try later ')
-            toastRef.current.tooggleVisibility({ bg: 'danger' })
-          })                  
+        const res = await axios.post(baseUrl, { token, formData })        
+        if (res.data.success) {
+          setMessage('Your message has been sent!!')
+          toastRef.current.tooggleVisibility({ bg: 'success' }) 
+        } else {
+          setMessage('Sorry we couldn\'t verify you are not robot')
+          toastRef.current.tooggleVisibility({ bg: 'danger' })        
+        }    
       } catch (error) {
         setMessage('Sorry service not available  try later ')   
         toastRef.current.tooggleVisibility({ bg: 'danger' })

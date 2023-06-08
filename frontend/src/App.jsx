@@ -17,7 +17,6 @@ import ListLastestPosts from './components/Blog/ListLastestPosts'
 import LazyFooter from './components/Footer/index'
 import ListPostsByTag from './components/Blog/ListPostsByTags'
 import { Contact } from './pages/Contact/Contact'
-import { Email } from './components/Email/Email'
 import { Helmet } from 'react-helmet'
 import { Login } from './pages/Admin/Login'
 import { Unsubscribe } from './components/Unsubscribe'
@@ -74,7 +73,6 @@ export function App () {
 }
         />
         <Route path='/search/:keyword' element={<SearchResults />} />
-        <Route path='/email' element={<Email />} />
         <Route path='/unsubscribe' element={<Unsubscribe />} />
 
         <Route path='/admin/login' element={<Login />} />
