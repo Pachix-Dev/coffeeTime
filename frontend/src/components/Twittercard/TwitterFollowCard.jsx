@@ -28,7 +28,7 @@ export function TwitterFollowCard ({ id, username, name, initialIsFollowing, rev
       <div className='text-center textcustomer'>
         <img
           className='pach-followcard-avatar w-100 p-5'
-          alt='El avatar de pachi'
+          alt={username}
           src={`https://unavatar.io/${username}`}
           loading='lazy'
         />
