@@ -1,11 +1,12 @@
 import Container from 'react-bootstrap/esm/Container'
 
-export function Dashboard () {
+export function ListDrinks () {
   return (
     <>
       <Container>
-        <h1>Welcome User</h1>
+        <h1>List of Drinks</h1>
       </Container>
+
     </>
   )
 }

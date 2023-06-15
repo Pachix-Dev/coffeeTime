@@ -1,4 +1,3 @@
-
 import Card from 'react-bootstrap/esm/Card'
 import { useState } from 'react'
 import { ModalDetail } from '../ModalDetail/ModalDetail'

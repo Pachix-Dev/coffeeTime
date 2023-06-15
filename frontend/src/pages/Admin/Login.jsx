@@ -5,6 +5,7 @@ import loginService from '../../services/login'
 import { useEffect, useRef, useState } from 'react'
 import drinkService from '../../services/drinks'
 import { Notification } from '../../components/Notification'
+import { useNavigate } from 'react-router-dom'
 
 export function Login () {
   const [username, setUsername] = useState('')
@@ -12,14 +13,16 @@ export function Login () {
   const [user, setUser] = useState(null)
   const [message, SetMessage] = useState('')
   const toastRef = useRef()
+  const navigate = useNavigate()
+
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedDrinkAppUser')
-
     if (loggedUserJSON) {
       const userLogged = JSON.parse(loggedUserJSON)
       setUser(userLogged)
       console.log(userLogged)
       drinkService.setToken(userLogged.token)
+      navigate('/admin/dashboard')
     }
   }, [])
 
@@ -40,6 +43,7 @@ export function Login () {
       setPassword('')
       SetMessage('You are Login now')
       toastRef.current.tooggleVisibility({ bg: 'success' })
+      navigate('/admin/dashboard')
     } catch (error) {
       console.log(error)
       SetMessage('invalid user or password')

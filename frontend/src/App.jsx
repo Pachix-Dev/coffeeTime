@@ -3,7 +3,7 @@ import './assets/fonts/GrandHotel-Regular.ttf'
 import './assets/fonts/Montserrat-Bold.ttf'
 import './assets/fonts/Montserrat-Regular.ttf'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Routes, Route } from 'react-router'
+import { Routes, Route, redirect } from 'react-router'
 import { Mousefloow } from './components/Mousefollow'
 import { Menu } from './components/Menu/Menu'
 import { Home } from './pages/Home/Home'
@@ -18,8 +18,10 @@ import LazyFooter from './components/Footer/index'
 import ListPostsByTag from './components/Blog/ListPostsByTags'
 import { Contact } from './pages/Contact/Contact'
 import { Helmet } from 'react-helmet'
-import { Login } from './pages/Admin/Login'
 import { Unsubscribe } from './components/Unsubscribe'
+
+import { Login } from './pages/Admin/Login'
+import { Dashboard } from './pages/Admin/Dashboard'
 
 export function App () {
   return (
@@ -76,6 +78,11 @@ export function App () {
         <Route path='/unsubscribe' element={<Unsubscribe />} />
 
         <Route path='/admin/login' element={<Login />} />
+        <Route
+          path='/admin/dashboard' render={() => {
+            return user ? redirect('/admin/login') : <Dashboard />
+          }}
+        />
         <Route path='/admin/createDrink' element={<Login />} />
         <Route path='/admin/updateDrink' element={<Login />} />
         <Route path='/admin/deleteDrink' element={<Login />} />
