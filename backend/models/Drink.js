@@ -6,7 +6,7 @@ const drinkSchema = new Schema({
   title: { type: String, required: true, unique: false },
   description: { type: String, required: true },
   ingredients: { type: Array, required: true },
-  image: { type: String, required: true },
+  image: { type: Array, required: true },
   date: Date,
   user: {
     type: Schema.Types.ObjectId,

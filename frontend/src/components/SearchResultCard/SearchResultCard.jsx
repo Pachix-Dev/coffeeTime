@@ -6,7 +6,6 @@ export default function SearchResultCard ({ id, replacetitle, newReplaceIngredie
   const [modalShow, setModalShow] = useState(false)
   return (
     <>
-
       <Card className='searchCard h-100 text-black' onClick={() => setModalShow(true)}>
         <div className='cardImage' style={{ background: `url(${image}) center center no-repeat`, backgroundSize: 'cover' }} />
         <Card.Body>

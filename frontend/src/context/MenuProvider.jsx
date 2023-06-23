@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { createContext, useState } from 'react'
 
-export const MenuContext = React.createContext({})
+export const MenuContext = createContext({})
 
-export function MenuContextProvider ({ children }) {
+export function MenuProvider ({ children }) {
   const [show, setShow] = useState(false)
   return (
     <MenuContext.Provider value={{ show, setShow }}>

@@ -20,21 +20,20 @@ export function Contact () {
   const [message, setMessage] = useState(null)
   const [captcha, setCaptcha] = useState(false)
   
-  const baseUrl = 'http://127.0.0.1:3001/api/recaptcha/'
+  const baseUrl = '/api/recaptcha/'
   
   const onChange = () => {
     setCaptcha(true)    
   }
 
   const handleSubmit = async (event) => {
+    event.preventDefault()
     const form = event.currentTarget
       
-    if (form.checkValidity() === false || captcha === false) {
-      event.preventDefault()
+    if (form.checkValidity() === false || captcha === false) {     
       setValidated(true)
       event.stopPropagation()
     } else {
-      event.preventDefault()
       const token = captchaRef.current.getValue()
       captchaRef.current.reset()
       setCaptcha(false)

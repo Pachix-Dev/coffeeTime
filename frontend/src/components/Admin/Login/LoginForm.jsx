@@ -1,5 +1,6 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
 export function LoginForm ({ handleLogin, ...props }) {
   return (
@@ -13,6 +14,7 @@ export function LoginForm ({ handleLogin, ...props }) {
             placeholder='Enter Username'
             name='Username'
             required
+            autoComplete='false'
             onChange={props.handleUsernameChange}
           />
           <Form.Text className='text-muted'>
@@ -31,11 +33,11 @@ export function LoginForm ({ handleLogin, ...props }) {
             onChange={props.handlePasswordChange}
           />
         </Form.Group>
-        <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-          <Form.Check type='checkbox' label='Check me out' />
-        </Form.Group>
         <Button variant='primary' type='submit'>
-          Login
+
+          {!props.loading
+            ? ' Login'
+            : <div><Spinner animation='border' size='sm' /> Loading...</div>}
         </Button>
       </Form>
     </>

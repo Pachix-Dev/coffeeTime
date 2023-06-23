@@ -1,25 +1,26 @@
-
-import './Menu.css'
 import logocoffee from '../../assets/img/coffeeTimelogo2.png'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { Link, NavLink } from 'react-router-dom'
-import { SearchInput } from '../SearchInput/SearchInput'
-import { useContext } from 'react'
-import { MenuContext } from '../../context/MenuProvider'
+import { useState } from 'react'
+import { useAuth } from '../../hooks/useAuth'
 
-export function Menu () {
-  const { show, setShow } = useContext(MenuContext)
+export function MenuAdmin () {
+  const { username, logout } = useAuth()
+
+  const [show, setShow] = useState()
+
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
+
   return (
     <>
-      <Navbar bg='dark' expand='lg' sticky='top' className='menuweb'>
+      <Navbar bg='dark' expand='lg' fixed='top' className='menuweb'>
         <Container>
-          <Navbar.Brand as={Link} to='/'><img src={logocoffee} width={100} alt='logo-coffee-time' /></Navbar.Brand>
-          <Navbar.Toggle onClick={handleShow} />
+          <Navbar.Brand as={Link} to='/admin/dashboard'><img src={logocoffee} width={100} alt='logo-coffee-time' /></Navbar.Brand>
+          <Navbar.Toggle onClick={handleShow} aria-controls='offcanvasMenuweb' />
           <Navbar.Offcanvas
             id='offcanvasMenuweb'
             aria-labelledby='offcanvasMenuweb'
@@ -28,21 +29,23 @@ export function Menu () {
           >
             <Offcanvas.Header closeButton onClick={handleClose}>
               <Offcanvas.Title>
-                Coffe Time
+                {username}
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className='me-auto my-2 my-lg-0'>
-                <NavLink to='/' className='nav-link' onClick={handleClose}>Home</NavLink>
-                <NavLink to='/blog' className='nav-link' onClick={handleClose}>
-                  Blog
+                <NavLink to='dashboard' className='nav-link' onClick={handleClose}>DashBoard</NavLink>
+                <NavLink to='listDrinks' className='nav-link' onClick={handleClose}>
+                  Drinks
                 </NavLink>
-                <NavLink to='/contact' className='nav-link' onClick={handleClose}>
-                  Contact
-                </NavLink>
-              </Nav>
-              <Nav style={{ position: 'relative' }}>
-                <SearchInput />
+                <button
+                  className='nav-link' onClick={() => {
+                    logout()
+                    handleClose()
+                  }}
+                >
+                  Logout
+                </button>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

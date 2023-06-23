@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import './SearchInput.css'
 
-import { MenuContext } from '../Context/MenuContext'
+import { MenuContext } from '../../context/MenuProvider'
 import { useKeywordEmphasis } from '../../hooks/useKeywordEmphasis'
 import { ItemResult } from './ItemResult'
 

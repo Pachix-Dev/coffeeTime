@@ -26,7 +26,6 @@ const Notification = forwardRef(({ message }, ref) => {
         <Toast.Header>
           <img src={coffeeicon} width={25} className='rounded me-2' alt='' />
           <strong className='me-auto'>Coffee Time</strong>
-
         </Toast.Header>
         <Toast.Body>{message}</Toast.Body>
       </Toast>

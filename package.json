@@ -28,6 +28,8 @@
   "dependencies": {
     "axios": "1.4.0",
     "dotenv": "16.1.1",
+    "express-fileupload": "1.4.0",
+    "react-images-uploading": "^3.1.7",
     "resend": "0.15.1"
   },
   "devDependencies": {

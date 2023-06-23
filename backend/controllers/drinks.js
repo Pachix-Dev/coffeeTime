@@ -2,6 +2,7 @@ const drinksRouter = require('express').Router()
 const Drink = require('../models/Drink')
 const User = require('../models/User')
 const userExtractor = require('../utils/userExtractor')
+const path = require('path')
 // get all drinks
 drinksRouter.get('/', async (request, response, next) => {
   try {
@@ -64,12 +65,26 @@ drinksRouter.post('/', userExtractor, async (request, response, next) => {
 drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
   const drink = request.body
+  const images = []
+
+  for (let i = 0; i < request.files.images.length; i++) {
+    const image = request.files.images[i]
+    const uploadPath = path.join(__dirname, '../uploads/') + image.name
+
+    await new Promise(resolve => {
+      image.mv(uploadPath, (err) => {
+        if (err) return response.status(500).send(err)
+        images.push(image.name)
+        resolve(true)
+      })
+    })
+  }
 
   const newDrinkInfo = {
     title: drink.title,
     description: drink.description,
     ingredients: drink.ingredients,
-    image: drink.image
+    image: images
   }
 
   try {

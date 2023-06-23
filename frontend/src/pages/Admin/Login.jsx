@@ -1,54 +1,33 @@
 import Container from 'react-bootstrap/esm/Container'
-import './Login.css'
-import { LoginForm } from '../../components/Login/LoginForm'
-import loginService from '../../services/login'
+
+import { LoginForm } from '../../components/Admin/Login/LoginForm'
 import { useEffect, useRef, useState } from 'react'
-import drinkService from '../../services/drinks'
 import { Notification } from '../../components/Notification'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
 
 export function Login () {
+  const toastRef = useRef()
+  const { isLogged, loading, message, login } = useAuth()
+
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/admin/dashboard'
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
-  const [message, SetMessage] = useState('')
-  const toastRef = useRef()
-  const navigate = useNavigate()
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedDrinkAppUser')
-    if (loggedUserJSON) {
-      const userLogged = JSON.parse(loggedUserJSON)
-      setUser(userLogged)
-      console.log(userLogged)
-      drinkService.setToken(userLogged.token)
-      navigate('/admin/dashboard')
+    if (isLogged) {
+      setTimeout(() => {
+        navigate(from, { replace: true })
+      }, 1000)
     }
-  }, [])
+  }, [isLogged, navigate])
 
-  const handleLogin = async (event) => {
+  const handleLogin = (event) => {
     event.preventDefault()
-    try {
-      const userLogin = await loginService.login({
-        username,
-        password
-      })
-      window.localStorage.setItem(
-        'loggedDrinkAppUser', JSON.stringify(userLogin)
-      )
-
-      drinkService.setToken(userLogin.token)
-      setUser(userLogin)
-      setUsername('')
-      setPassword('')
-      SetMessage('You are Login now')
-      toastRef.current.tooggleVisibility({ bg: 'success' })
-      navigate('/admin/dashboard')
-    } catch (error) {
-      console.log(error)
-      SetMessage('invalid user or password')
-      toastRef.current.tooggleVisibility({ bg: 'danger' })
-    }
+    login({ username, password }, toastRef)
   }
 
   return (
@@ -61,6 +40,7 @@ export function Login () {
           handleUsernameChange={({ target }) => setUsername(target.value)}
           handlePasswordChange={({ target }) => setPassword(target.value)}
           handleLogin={handleLogin}
+          loading={loading}
         />
         <Notification
           ref={toastRef}
