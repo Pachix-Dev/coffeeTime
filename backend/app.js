@@ -29,6 +29,8 @@ app.use('/api/recaptcha', coffeeTimeRecaptchaRouter)
 
 // api Resend mail webhooks
 app.use('/api/resend-webhooks', resendWebhooksRouter)
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 // portfolio website
 app.use('/', express.static(path.join(__dirname, '/portfolio')))
 

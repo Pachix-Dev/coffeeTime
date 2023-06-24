@@ -31,6 +31,7 @@ label{font-weight: bold;}
     display: inline-flex;
     padding: 2px;
     margin-right: 5px;    
+    margin-top: 5px
 }
 .ingredients-list button{
     border: none;
@@ -41,11 +42,16 @@ label{font-weight: bold;}
     width: 15px;
 }
 .upload-image-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
 }
-
+.upload-image-wrapper>:nth-child(2){
+    grid-column: 1/span 2;
+    grid-row: 1/span 2;
+    height: 100%;
+}
 .upload-image__click-drog{
     text-align: center;
     color: black;
@@ -56,14 +62,41 @@ label{font-weight: bold;}
     width: 100%;  
     display: grid;
     place-items: center;  
-    
+    order: 2;
 }
 .upload-image__click-drog:hover{
     background-color: #929ca6;
     cursor: pointer;
 }
-
+.image-item__btn-wrapper{
+    position: absolute;
+    position: absolute;
+    top: 5px;
+    left: 5px
+}
 .image-item__btn-wrapper button{    
-    margin-right: 15px;
-    margin-top: 15px;
+    margin-right: 10px; 
+    padding: 5px;       
+    display: inline-block;
+}
+.image-item__btn-wrapper button svg{    
+    width: 20px;
+}
+.image-item{
+    position: relative;
+}
+.image-item img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media(width<=540px){
+    .upload-image-wrapper{       
+        grid-template-columns: repeat(3,1fr);        
+    }
+    .upload-image-wrapper>:nth-child(2){
+        grid-column: 1/span 2;
+        grid-row: 1/span 2;       
+    }
 }

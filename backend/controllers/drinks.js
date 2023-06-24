@@ -65,16 +65,30 @@ drinksRouter.post('/', userExtractor, async (request, response, next) => {
 drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
   const drink = request.body
+  const imageUploads = request.files?.images
   const images = []
 
-  for (let i = 0; i < request.files.images.length; i++) {
-    const image = request.files.images[i]
-    const uploadPath = path.join(__dirname, '../uploads/') + image.name
-
-    await new Promise(resolve => {
-      image.mv(uploadPath, (err) => {
+  // uploads multiple images
+  if (imageUploads?.length > 1) {
+    images.push(await Promise.all(
+      imageUploads?.map(async (imageUpload) => {
+        const uploadPath = path.join(__dirname, '../uploads/') + imageUpload.name
+        return await imageUpload.mv(uploadPath, (err) => {
+          if (err) return response.status(500).send(err)
+          return imageUpload.name
+        })
+      })
+    ))
+  }
+  console.log(imageUploads)
+  // uploads single image
+  if (imageUploads !== undefined && Array.isArray(imageUploads) === false) {
+    console.log('hola')
+    const uploadPath = path.join(__dirname, '../uploads/') + imageUploads.name
+    await new Promise((resolve) => {
+      imageUploads.mv(uploadPath, (err) => {
         if (err) return response.status(500).send(err)
-        images.push(image.name)
+        images.push(imageUploads.name)
         resolve(true)
       })
     })
@@ -84,12 +98,15 @@ drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
     title: drink.title,
     description: drink.description,
     ingredients: drink.ingredients,
-    image: images
+    image: drink.noEditedImages
   }
 
   try {
     const updateDrink = await Drink.findByIdAndUpdate(id, newDrinkInfo, { new: true })
-    response.json(updateDrink)
+    response.json({
+      mongodbResult: updateDrink,
+      fileupLoad: images
+    })
   } catch (error) {
     next(error)
   }

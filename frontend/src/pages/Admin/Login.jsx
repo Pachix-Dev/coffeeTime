@@ -1,14 +1,13 @@
 import Container from 'react-bootstrap/esm/Container'
 
 import { LoginForm } from '../../components/Admin/Login/LoginForm'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Notification } from '../../components/Notification'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 
 export function Login () {
-  const toastRef = useRef()
-  const { isLogged, loading, message, login } = useAuth()
+  const { isLogged, loading, login } = useAuth()
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -27,7 +26,7 @@ export function Login () {
 
   const handleLogin = (event) => {
     event.preventDefault()
-    login({ username, password }, toastRef)
+    login({ username, password })
   }
 
   return (
@@ -41,10 +40,6 @@ export function Login () {
           handlePasswordChange={({ target }) => setPassword(target.value)}
           handleLogin={handleLogin}
           loading={loading}
-        />
-        <Notification
-          ref={toastRef}
-          message={message}
         />
       </Container>
     </div>

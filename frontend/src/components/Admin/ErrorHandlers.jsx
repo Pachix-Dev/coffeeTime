@@ -11,7 +11,7 @@ export function ErrorHandlers (props) {
 
     imageVoid: 'please upload an image you can upload up to 1MB',
 
-    maxNumber: 'Number of selected images exceed you can only upload one image',
+    maxNumber: 'Number of upload images exceed',
 
     acceptType: 'Your selected file type is not allow please selected image format jpg,png,jpeg',
 

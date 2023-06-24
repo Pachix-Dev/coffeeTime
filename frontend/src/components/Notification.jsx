@@ -1,3 +1,7 @@
+/* this file is not used cuz we have now ToasContextProvider
+  but is interesting you can use this component to send notifications imperatively 🧐
+*/
+
 import { forwardRef, useImperativeHandle, useState } from 'react'
 import Toast from 'react-bootstrap/Toast'
 import ToastContainer from 'react-bootstrap/ToastContainer'
