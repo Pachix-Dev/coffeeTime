@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ModalDetail } from '../ModalDetail/ModalDetail'
 
-export function ItemResult ({ id, replacetitle, newReplaceIngredients, replacedescription, title, description, ingredients, image }) {
+export function ItemResult ({ id, replacetitle, replaceingredients, replacedescription, title, description, ingredients, image }) {
   const [modalShow, setModalShow] = useState(false)
   return (
     <>
@@ -9,7 +9,7 @@ export function ItemResult ({ id, replacetitle, newReplaceIngredients, replacede
         <div className='text-black'>
           <strong dangerouslySetInnerHTML={{ __html: replacetitle }} />
           <div>
-            <p dangerouslySetInnerHTML={{ __html: newReplaceIngredients }} />
+            <p dangerouslySetInnerHTML={{ __html: replaceingredients }} />
             <small dangerouslySetInnerHTML={{ __html: replacedescription }} />
           </div>
         </div>

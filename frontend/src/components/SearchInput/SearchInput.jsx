@@ -57,14 +57,14 @@ export function SearchInput () {
         {
           (keywordEmphasis !== null
             ? keywordEmphasis.map(filteredKeywords => {
-              const { id, replacetitle, replacedescription, newReplaceIngredients, title, description, ingredients, image } = filteredKeywords
+              const { id, replacetitle, replacedescription, replaceingredients, title, description, ingredients, image } = filteredKeywords
               return (
                 <ItemResult
                   key={id}
                   id={id}
                   replacetitle={replacetitle}
                   replacedescription={replacedescription}
-                  newReplaceIngredients={newReplaceIngredients}
+                  replaceingredients={replaceingredients}
                   title={title}
                   description={description}
                   ingredients={ingredients}
