@@ -27,7 +27,7 @@ export function Home () {
         <div className='fondo2 '>
           <Container className='mt-5'>
             <Row className='pt-5'>
-              <Col sm={6} xl={6} md={12} xs={12}>
+              <Col xl={6} md={12}>
                 <motion.div
                   className='infotext'
                   initial={{ opacity: 0, y: -20 }}
