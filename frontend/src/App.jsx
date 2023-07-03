@@ -17,14 +17,14 @@ import { Contact } from './pages/Contact/Contact'
 import { Helmet } from 'react-helmet'
 import { Unsubscribe } from './components/Unsubscribe'
 
-import { Login } from './pages/Admin/Login'
-import { Dashboard } from './pages/Admin/Dashboard'
+import { Login } from './components/Admin/Login/Login'
+import { Dashboard } from './components/Admin/Dashboard'
 import RequireAuth from './components/Admin/RequireAuth'
 
 import SiteFront from './components/Layout/SiteFront'
 import Site from './components/Layout/Site'
-import { ListDrinks } from './pages/Admin/ListDrinks'
-import { UpdateDrink } from './pages/Admin/UpdateDrink'
+import { ListDrinks } from './components/Admin/ListDrinks'
+import { UpdateDrink } from './components/Admin/UpdateDrink'
 
 export function App () {
   return (
@@ -95,7 +95,7 @@ export function App () {
           </Route>
 
           <Route element={<RequireAuth />}>
-            <Route path='updateDrink' element={<UpdateDrink />} />
+            <Route path='updateDrink/:id' element={<UpdateDrink />} />
           </Route>
 
           <Route element={<RequireAuth />}>

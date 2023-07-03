@@ -1,6 +1,6 @@
-body{
-    margin:0;
-    background: #222831;
-    font-family:  system-ui;
-    color: white;
+body {
+    margin: 0;
+    background-color: #222831 !important;
+    font-family: system-ui;
+    color: white !important;
 }

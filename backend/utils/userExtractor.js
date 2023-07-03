@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken')
 
 module.exports = (request, response, next) => {
   const authorization = request.get('authorization')
-  let token = ''
 
+  let token = ''
   if (authorization && authorization.toLowerCase().startsWith('bearer')) {
     token = authorization.substring(7)
   }
@@ -16,8 +16,6 @@ module.exports = (request, response, next) => {
     })
   }
 
-  const { id: userId } = decodedToken
-
-  request.userId = userId
+  request.userId = decodedToken.id
   next()
 }

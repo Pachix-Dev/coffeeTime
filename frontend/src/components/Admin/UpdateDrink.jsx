@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { FormDrink } from '../../components/Admin/FormDrink'
 import { useContext, useEffect, useState } from 'react'
 import drinkService from '../../services/drinks'
@@ -6,23 +6,23 @@ import AuthContext from '../../Context/AuthProvider'
 import { useValidate } from '../../hooks/useValidate'
 import { useToastContext } from '../../hooks/useToastContext'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { editDrink, getPostsStatus, selectPostById } from '../../features/drinks/drinkSlice'
+
 export function UpdateDrink () {
   const { auth } = useContext(AuthContext)
   const { setToastSettings } = useToastContext()
-  const { state } = useLocation()
-  const navigate = useNavigate()
+  const { id } = useParams()
 
+  const dispatch = useDispatch()
+
+  const drink = useSelector((state) => selectPostById(state, id))
+
+  const postStatus = useSelector(getPostsStatus)
   const [errorsImage, setErrorsImage] = useState(null)
-
   const { error, setError } = useValidate(null)
 
-  const [images, setImages] = useState(state?.image || [])
-
-  useEffect(() => {
-    if (state === null) {
-      navigate('/admin/listDrinks')
-    }
-  }, [])
+  const [images, setImages] = useState([])
 
   const onChange = (imageList, addUpdateIndex) => {
     console.log(imageList)
@@ -40,6 +40,7 @@ export function UpdateDrink () {
     event.preventDefault()
 
     drinkService.setToken(auth.token)
+
     const listIngredients = []
     document.querySelectorAll('#ingredients-list li>span').forEach(function (item) {
       listIngredients.push(item.innerText)
@@ -59,40 +60,49 @@ export function UpdateDrink () {
     listIngredients.forEach(item => {
       data.append('ingredients', item)
     })
-    data.append('id', state?.id)
+    data.append('id', drink?.id)
 
     // if edit images for upload
     images.forEach(item => {
-      data.append('images', item?.file)
+      data.append('imagesUpload', item?.file)
     })
 
-    // if not edit images
-    const noEditedImages = images.map(image => image?.file?.name || image)
-
-    noEditedImages.forEach(item => {
-      data.append('noEditedImages', item)
+    images.forEach(item => {
+      data.append('imageNames', item?.file?.name || item)
     })
 
     drinkService.updateDrink(data)
       .then(response => {
         console.log(response)
+        if (response.status === 'ok') {
+          dispatch(editDrink(response.data.mongodbResult))
+        }
         setToastSettings(response)
       }).catch(e => {
         console.log(e)
       })
   }
 
+  useEffect(() => {
+    if (postStatus === 'succeeded') {
+      setImages(drink.image)
+    }
+  }, [postStatus, drink?.image])
+
   return (
-    <FormDrink
-      handleSubmit={handleSubmit}
-      title={state?.title}
-      description={state?.description}
-      images={images}
-      ingredients={state?.ingredients || []}
-      onChange={onChange}
-      onError={onError}
-      errorsImage={errorsImage}
-      showError={error}
-    />
+    <>
+      <FormDrink
+        handleSubmit={handleSubmit}
+        title={drink?.title}
+        description={drink?.description}
+        images={images}
+        ingredients={drink?.ingredients || []}
+        onChange={onChange}
+        onError={onError}
+        showError={error}
+        errorsImage={errorsImage}
+      />
+
+    </>
   )
 }

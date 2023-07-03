@@ -17,6 +17,7 @@ const tokenExpired = () => {
 
 const ERROR_HANDLERDS = {
   'token expired': {
+    status: 'fail',
     bg: 'warning',
     show: true,
     message: 'your session has expired please login again'
@@ -78,8 +79,9 @@ const updateDrink = async (newObject) => {
   }
   try {
     const { data } = await axios.put(`${baseUrl}/${id}`, newObject, config)
-    console.log(data)
     const sucessSettings = {
+      status: 'ok',
+      data,
       bg: 'success',
       show: true,
       message: 'Request resolved successfully!'
@@ -96,4 +98,31 @@ const updateDrink = async (newObject) => {
   }
 }
 
-export default { getAlldrinks, createDrink, updateDrink, setToken }
+const deleteDrink = async (id) => {
+  const config = {
+    headers: {
+      Authorization: token,
+      'Content-Type': 'multipart/form-data'
+    }
+  }
+  try {
+    const { data } = await axios.delete(`${baseUrl}/${id}`, config)
+    const sucessSettings = {
+      status: 'ok',
+      data,
+      bg: 'success',
+      show: true,
+      message: 'Request resolved successfully!'
+    }
+    return sucessSettings
+  } catch (e) {
+    console.log(e)
+    if (e.response.data.error === 'token expired') {
+      tokenExpired()
+    }
+    const errorSettings = (ERROR_HANDLERDS[e.response.data.error] || ERROR_HANDLERDS.defaultError)
+
+    return errorSettings
+  }
+}
+export default { getAlldrinks, createDrink, updateDrink, deleteDrink, setToken }

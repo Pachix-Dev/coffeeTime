@@ -1,10 +1,9 @@
 import Container from 'react-bootstrap/esm/Container'
 
-import { LoginForm } from '../../components/Admin/Login/LoginForm'
+import { LoginForm } from './LoginForm'
 import { useEffect, useState } from 'react'
-import { Notification } from '../../components/Notification'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth'
+import { useAuth } from '../../../hooks/useAuth'
 
 export function Login () {
   const { isLogged, loading, login } = useAuth()

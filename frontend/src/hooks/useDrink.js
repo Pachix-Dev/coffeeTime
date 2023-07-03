@@ -7,7 +7,7 @@ export function useDrink () {
   const getDrinks = async (idDetail) => {
     const responseDrinks = await searchDrinks(idDetail)
     if (responseDrinks === null) return null
-    const filteredKeywords = responseDrinks.filter(drink => drink.id == idDetail)
+    const filteredKeywords = responseDrinks.filter(drink => drink.id === idDetail)
     setDrinks(filteredKeywords)
   }
 

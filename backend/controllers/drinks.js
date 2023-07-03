@@ -65,7 +65,7 @@ drinksRouter.post('/', userExtractor, async (request, response, next) => {
 drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
   const drink = request.body
-  const imageUploads = request.files?.images
+  const imageUploads = request.files?.imagesUpload
   const images = []
 
   // uploads multiple images
@@ -80,7 +80,7 @@ drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
       })
     ))
   }
-  console.log(imageUploads)
+
   // uploads single image
   if (imageUploads !== undefined && Array.isArray(imageUploads) === false) {
     console.log('hola')
@@ -98,7 +98,7 @@ drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
     title: drink.title,
     description: drink.description,
     ingredients: drink.ingredients,
-    image: drink.noEditedImages
+    image: drink.imageNames
   }
 
   try {
@@ -115,6 +115,7 @@ drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
 drinksRouter.delete('/:id/', userExtractor, async (request, response, next) => {
   const { id } = request.params
   const { userId } = request
+
   try {
     await Drink.findByIdAndRemove(id)
     await User.updateOne({ _id: userId },

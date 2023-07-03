@@ -1,121 +1,141 @@
 /*bloque 1 coffee time*/
-.block-home-1{
+.block-home-1 {
     position: relative;
     width: 100%;
     height: 100vh;
 }
-.fondo1{
+
+.fondo1 {
     background-image: url('../../assets/img/fondo1.webp');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom right;
-    position:absolute;
+    position: absolute;
     width: 100%;
     height: 100%;
 }
-.fondo2{
+
+.fondo2 {
     background-image: url('../../assets/img/fondo2.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
-    position:absolute;
+    position: absolute;
     width: 100%;
-    height: 100%;      
+    height: 100%;
 }
 
-.infotext h1{
+.infotext h1 {
     color: white;
     font-size: 6em;
     font-family: 'GrandHotel-Regular';
 }
-.infotext h4{
+
+.infotext h4 {
     color: white;
     font-size: 1.8em;
 }
-.infotext p{
+
+.infotext p {
     color: white;
     font-family: Montserrat-Regular;
 }
-.infotext button{
+
+.infotext button {
     cursor: pointer;
     background-color: transparent;
     border: solid 2px #29a19c;
     border-radius: 10px;
-    color:white;    
+    color: white;
     font-weight: bold;
     font-family: 'Montserrat-Bold';
     padding: 10px 20px;
     transition: 0.5s ease-in-out 0s;
     height: 48px
 }
-.infotext button:hover{
- transform: scale(1.05);
- background-color: #29a19c;
- border: none;
+
+.infotext button:hover {
+    transform: scale(1.05);
+    background-color: #29a19c;
+    border: none;
 }
+
 /*bloque 2 home*/
-.block-home-2{
+.block-home-2 {
     position: relative;
     background-color: #29a19c;
 }
-.block-home-2 .infotext button{
+
+.block-home-2 .infotext button {
     cursor: pointer;
     background-color: #222831;
     border: none;
     border-radius: 10px;
-    color:white;
+    color: white;
     font-size: 20px;
     font-weight: bold;
     font-family: 'Montserrat-Bold';
     padding: 10px 20px;
     transition: 0.5s ease-in-out 0s;
-    
+
 }
+
 /*bloque 3 home*/
-.block-home-3{
+.block-home-3 {
     background-color: #222831;
 }
-.textcustomer{
+
+.textcustomer {
     color: white;
     position: relative;
     z-index: 5;
 }
-.textcustomer h1{
-    font-family:GrandHotel-Regular;
+
+.textcustomer h1 {
+    font-family: GrandHotel-Regular;
 }
-.textcustomer p{
-    font-family:Montserrat-Regular;
+
+.textcustomer p {
+    font-family: Montserrat-Regular;
 }
+
 /*bloque 4 home*/
-.block-home-4{
+.block-home-4 {
     background-color: #29a19c;
     font-weight: bold;
+    color: white;
 }
-.block-home-4 h1{
+
+.block-home-4 h1 {
     color: #fff;
     font-family: 'GrandHotel-Regular';
-    font-size: 60pt;    
+    font-size: 60pt;
 }
-.block-home-4 h4{
+
+.block-home-4 h4 {
     color: #fff;
     font-family: 'Montserrat-bold';
 }
-.block-home-4 p{
+
+.block-home-4 p {
     color: white;
-    font-family:'Montserrat-Regular';
+    font-family: 'Montserrat-Regular';
 }
+
 /*bloque 5 home*/
-.block-home-5 h1{
+.block-home-5 h1 {
     color: white;
     font-family: 'GrandHotel-Regular';
-    font-size:60pt;
+    font-size: 60pt;
 }
-.block-home-5 p{
+
+.block-home-5 p {
     color: white;
-    font-family:'Montserrat-Regular';
+    font-family: 'Montserrat-Regular';
 }
-.block-home-5 span{
+
+.block-home-5 span {
     background-color: #29a19c;
     color: white;
     padding: 10px 20px;
@@ -124,34 +144,42 @@
     border: none;
 }
 
-@media (max-width: 1024px) { 
-    .block-home-1{
+@media (max-width: 1024px) {
+    .block-home-1 {
         height: auto;
     }
-    .block-home-1 .fondo1{
-        background-image: none;  
-        position: inherit;      
+
+    .block-home-1 .fondo1 {
+        background-image: none;
+        position: inherit;
     }
-    .block-home-1 .fondo2{
-        background-image: none;  
-        position: inherit;      
+
+    .block-home-1 .fondo2 {
+        background-image: none;
+        position: inherit;
     }
-    .block-home-1 .container{
+
+    .block-home-1 .container {
         margin-top: 0 !important;
     }
-    .block-home-1 .row{
+
+    .block-home-1 .row {
         padding-top: 0 !important;
     }
-    body h1{        
+
+    body h1 {
         font-size: 4em;
     }
-    body button{        
+
+    body button {
         font-size: 15px !important;
-    }   
-    .block-home-2 .row{
+    }
+
+    .block-home-2 .row {
         padding-top: 0 !important;
     }
-    .infotext{
+
+    .infotext {
         margin-bottom: 2em;
     }
- }
+}

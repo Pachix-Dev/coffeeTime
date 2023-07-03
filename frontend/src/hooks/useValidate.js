@@ -4,7 +4,6 @@ export function useValidate () {
   const [error, setError] = useState(null)
 
   if (error !== null) {
-    console.log('hola')
     setTimeout(() => {
       setError(null)
     }, 2000)
