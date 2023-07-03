@@ -65,12 +65,10 @@ export function ListDrinks () {
         <Table striped hover variant='dark' responsive>
           <thead>
             <tr>
-              <th>
-                <input type='checkbox' name='records' data-indeterminate='false' />
-              </th>
-              <th>Title</th>
+              <th>Drink Name</th>
               <th>Ingredients</th>
               <th>Author</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
