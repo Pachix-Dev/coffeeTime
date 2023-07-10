@@ -25,6 +25,7 @@ import SiteFront from './components/Layout/SiteFront'
 import Site from './components/Layout/Site'
 import { ListDrinks } from './components/Admin/ListDrinks'
 import { UpdateDrink } from './components/Admin/UpdateDrink'
+import { CreateDrink } from './components/Admin/CreateDrink'
 
 export function App () {
   return (
@@ -91,16 +92,17 @@ export function App () {
           </Route>
 
           <Route element={<RequireAuth />}>
-            <Route path='listDrinks' element={<ListDrinks />} />
+            <Route path='create-drink' element={<CreateDrink />} />
           </Route>
 
           <Route element={<RequireAuth />}>
-            <Route path='updateDrink/:id' element={<UpdateDrink />} />
+            <Route path='list-drinks' element={<ListDrinks />} />
           </Route>
 
           <Route element={<RequireAuth />}>
-            <Route path='deleteDrink' element={<Dashboard />} />
+            <Route path='update-drink/:id' element={<UpdateDrink />} />
           </Route>
+
         </Route>
         {/* Missing Route */}
         <Route path='*' element={<ErrorPage />} />

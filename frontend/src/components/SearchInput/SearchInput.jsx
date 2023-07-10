@@ -1,5 +1,4 @@
 // SearchInput.jsx
-import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -9,19 +8,24 @@ import { MenuContext } from '../../context/MenuProvider'
 import { useKeywordEmphasis } from '../../hooks/useKeywordEmphasis'
 import { ItemResult } from './ItemResult'
 
+import { useState, useContext } from 'react'
+import { ModalDetail } from '../ModalDetail/ModalDetail'
+
 export function SearchInput () {
-  const { keywordEmphasis, getDrinks } = useKeywordEmphasis(null)
+  const { keywordEmphasis, getDrinks } = useKeywordEmphasis()
   const navigate = useNavigate()
   const { setShow } = useContext(MenuContext)
 
-  function handleChange (event) {
+  const [showModalDetail, setShowModalDetail] = useState({ show: false, title: '', description: '', ingredients: '', images: '' })
+
+  const handleChange = (event) => {
     if (event.target.value.startsWith(' ')) {
       return null
     }
     getDrinks(event.target.value)
   }
 
-  function handleSubmit (event) {
+  const handleSubmit = (event) => {
     event.preventDefault()
     const fields = new FormData(event.target)
     const searchword = fields.get('searchword')
@@ -29,6 +33,10 @@ export function SearchInput () {
     document.getElementById('searchDrinks').reset()
     getDrinks('')
     setShow(false)
+  }
+
+  const handleDetail = (title, description, ingredients, images) => {
+    setShowModalDetail({ show: true, title, description, ingredients, images })
   }
 
   return (
@@ -57,7 +65,7 @@ export function SearchInput () {
         {
           (keywordEmphasis !== null
             ? keywordEmphasis.map(filteredKeywords => {
-              const { id, replacetitle, replacedescription, replaceingredients, title, description, ingredients, image } = filteredKeywords
+              const { id, replacetitle, replacedescription, replaceingredients, title, description, ingredients, images } = filteredKeywords
               return (
                 <ItemResult
                   key={id}
@@ -68,13 +76,23 @@ export function SearchInput () {
                   title={title}
                   description={description}
                   ingredients={ingredients}
-                  image={image}
+                  images={images}
+                  handleDetail={handleDetail}
                 />
               )
             })
             : '')
         }
       </div>
+
+      <ModalDetail
+        show={showModalDetail?.show}
+        onHide={() => setShowModalDetail({ show: false })}
+        title={showModalDetail?.title}
+        description={showModalDetail?.description}
+        ingredients={showModalDetail?.ingredients}
+        images={showModalDetail?.images}
+      />
     </>
   )
 }

@@ -3,11 +3,10 @@ import { FormDrink } from '../../components/Admin/FormDrink'
 import { useContext, useEffect, useState } from 'react'
 import drinkService from '../../services/drinks'
 import AuthContext from '../../Context/AuthProvider'
-import { useValidate } from '../../hooks/useValidate'
 import { useToastContext } from '../../hooks/useToastContext'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { editDrink, getPostsStatus, selectPostById } from '../../features/drinks/drinkSlice'
+import { getPostsStatus, selectPostById, updateDrinks } from '../../features/drinks/drinkSlice'
 
 export function UpdateDrink () {
   const { auth } = useContext(AuthContext)
@@ -20,9 +19,14 @@ export function UpdateDrink () {
 
   const postStatus = useSelector(getPostsStatus)
   const [errorsImage, setErrorsImage] = useState(null)
-  const { error, setError } = useValidate(null)
+  const [error, setError] = useState(null)
+  if (error !== null) {
+    setTimeout(() => {
+      setError(null)
+    }, 2000)
+  }
 
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState(drink?.images || [])
 
   const onChange = (imageList, addUpdateIndex) => {
     console.log(imageList)
@@ -60,37 +64,40 @@ export function UpdateDrink () {
     listIngredients.forEach(item => {
       data.append('ingredients', item)
     })
+
     data.append('id', drink?.id)
 
-    // if edit images for upload
     images.forEach(item => {
-      data.append('imagesUpload', item?.file)
+      if (!item?.file?.name) {
+        data.append('imageNoEdited', item)
+      } else {
+        data.append('imagesUpload', item?.file)
+      }
     })
 
-    images.forEach(item => {
-      data.append('imageNames', item?.file?.name || item)
+    dispatch(updateDrinks(data)).then(response => {
+      setToastSettings(response.payload)
     })
-
-    drinkService.updateDrink(data)
+    /* drinkService.updateDrink(data)
       .then(response => {
-        console.log(response)
         if (response.status === 'ok') {
           dispatch(editDrink(response.data.mongodbResult))
         }
         setToastSettings(response)
       }).catch(e => {
         console.log(e)
-      })
+      }) */
   }
 
   useEffect(() => {
     if (postStatus === 'succeeded') {
-      setImages(drink.image)
+      setImages(drink?.images)
     }
-  }, [postStatus, drink?.image])
+  }, [postStatus, drink?.images])
 
   return (
     <>
+      <h2>Update a Drink</h2>
       <FormDrink
         handleSubmit={handleSubmit}
         title={drink?.title}

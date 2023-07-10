@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import trollface from '../../assets/img/troll.png'
+
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
@@ -19,8 +19,9 @@ function delayForDemo (promise) {
 
 export function SearchResults () {
   const { keyword } = useParams()
-  const { keywordEmphasis, getDrinks } = useKeywordEmphasis('')
+  const { keywordEmphasis, getDrinks } = useKeywordEmphasis()
   const firstRender = useRef(true)
+
   useEffect(() => {
     getDrinks(keyword)
     if (firstRender.current) {
@@ -35,9 +36,9 @@ export function SearchResults () {
       </Helmet>
       <Container className='searchBlock  pt-5 pb-5'>
         <Row>
-          {(keywordEmphasis.length !== 0
+          {(keywordEmphasis.length > 0
             ? keywordEmphasis.map(filteredKeywords => {
-              const { id, replacetitle, newReplaceIngredients, title, description, ingredients, image } = filteredKeywords
+              const { id, replacetitle, newReplaceIngredients, title, description, ingredients, images } = filteredKeywords
               return (
                 <Col key={id} xs={12} md={6} lg={4} xl={3} className='pt-5'>
                   <Suspense key={id} fallback={<LoaderSearchResults />}>
@@ -49,13 +50,13 @@ export function SearchResults () {
                       title={title}
                       description={description}
                       ingredients={ingredients}
-                      image={image}
+                      images={images}
                     />
                   </Suspense>
                 </Col>
               )
             })
-            : firstRender.current ? '' : <p className='pt-5'> Sorry we couldn't find what you were looking for<img src={trollface} /></p>)}
+            : firstRender.current ? '' : <p className='pt-5'> Sorry we couldn't find what you were looking for</p>)}
         </Row>
       </Container>
     </>

@@ -1,8 +1,9 @@
 const drinksRouter = require('express').Router()
 const Drink = require('../models/Drink')
 const User = require('../models/User')
+const { uploadImages } = require('../utils/middleware')
 const userExtractor = require('../utils/userExtractor')
-const path = require('path')
+
 // get all drinks
 drinksRouter.get('/', async (request, response, next) => {
   try {
@@ -36,17 +37,18 @@ drinksRouter.get('/:id', async (request, response, next) => {
 })
 
 drinksRouter.post('/', userExtractor, async (request, response, next) => {
-  const { title, description, ingredients, image } = request.body
-  // recuperamos userId de request
-  const { userId } = request
+  const { title, description, ingredients } = request.body
+  const images = await uploadImages(request, response)
 
+  // userId is recover in userExtractor
+  const { userId } = request
   const user = await User.findById(userId)
 
   const newDrink = new Drink({
     title,
     description,
     ingredients,
-    image,
+    images,
     date: new Date(),
     user: user._id
   })
@@ -55,8 +57,11 @@ drinksRouter.post('/', userExtractor, async (request, response, next) => {
     const savedDrink = await newDrink.save()
     user.drinks = user.drinks.concat(savedDrink._id)
     await user.save()
-
-    response.json(savedDrink)
+    savedDrink.user = user
+    response.json({
+      mongodbResult: savedDrink,
+      fileupLoad: images
+    })
   } catch (error) {
     next(error)
   }
@@ -65,40 +70,19 @@ drinksRouter.post('/', userExtractor, async (request, response, next) => {
 drinksRouter.put('/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
   const drink = request.body
-  const imageUploads = request.files?.imagesUpload
-  const images = []
 
-  // uploads multiple images
-  if (imageUploads?.length > 1) {
-    images.push(await Promise.all(
-      imageUploads?.map(async (imageUpload) => {
-        const uploadPath = path.join(__dirname, '../uploads/') + imageUpload.name
-        return await imageUpload.mv(uploadPath, (err) => {
-          if (err) return response.status(500).send(err)
-          return imageUpload.name
-        })
-      })
-    ))
+  const imagesToUpload = await uploadImages(request, response)
+  if (drink?.imageNoEdited !== undefined) {
+    imagesToUpload.push(drink?.imageNoEdited)
   }
 
-  // uploads single image
-  if (imageUploads !== undefined && Array.isArray(imageUploads) === false) {
-    console.log('hola')
-    const uploadPath = path.join(__dirname, '../uploads/') + imageUploads.name
-    await new Promise((resolve) => {
-      imageUploads.mv(uploadPath, (err) => {
-        if (err) return response.status(500).send(err)
-        images.push(imageUploads.name)
-        resolve(true)
-      })
-    })
-  }
+  const images = imagesToUpload.flat()
 
   const newDrinkInfo = {
     title: drink.title,
     description: drink.description,
     ingredients: drink.ingredients,
-    image: drink.imageNames
+    images
   }
 
   try {

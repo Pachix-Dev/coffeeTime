@@ -11,8 +11,7 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={{ setToastSettings }}>
       <ToastContainer
-        className='pt-3'
-        position='top-end'
+        className='pt-5 notification-system'
       >
         <Toast bg={toastSettings?.bg} onClose={() => setToastSettings({ show: false })} show={toastSettings?.show} delay={5000} autohide>
           <Toast.Header>

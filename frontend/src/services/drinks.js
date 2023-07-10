@@ -39,8 +39,8 @@ const getAlldrinks = () => {
           title: drink.title,
           description: drink.description,
           ingredients: drink.ingredients,
-          image: drink.image,
-          author: drink.user
+          images: drink.images,
+          user: drink.user
         }))
       })
     return drinks
@@ -50,7 +50,7 @@ const getAlldrinks = () => {
   }
 }
 
-const createDrink = (newObject) => {
+const createDrink = async (newObject) => {
   const config = {
     headers: {
       Authorization: token,
@@ -58,14 +58,23 @@ const createDrink = (newObject) => {
     }
   }
   try {
-    axios.post(baseUrl, newObject, config)
-      .then((response) => {
-        const { data } = response
-        return data
-      })
+    const { data } = await axios.post(baseUrl, newObject, config)
+    const sucessSettings = {
+      status: 'ok',
+      data,
+      bg: 'success',
+      show: true,
+      message: 'Request resolved successfully!'
+    }
+    return sucessSettings
   } catch (e) {
     console.log(e)
-    throw new Error('Error searching drinks')
+    if (e.response.data.error === 'token expired') {
+      tokenExpired()
+    }
+    const errorSettings = (ERROR_HANDLERDS[e.response.data.error] || ERROR_HANDLERDS.defaultError)
+
+    return errorSettings
   }
 }
 
@@ -106,10 +115,10 @@ const deleteDrink = async (id) => {
     }
   }
   try {
-    const { data } = await axios.delete(`${baseUrl}/${id}`, config)
+    await axios.delete(`${baseUrl}/${id}`, config)
     const sucessSettings = {
       status: 'ok',
-      data,
+      data: { id },
       bg: 'success',
       show: true,
       message: 'Request resolved successfully!'

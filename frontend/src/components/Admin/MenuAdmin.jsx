@@ -19,7 +19,7 @@ export function MenuAdmin () {
     <>
       <Navbar bg='dark' expand='lg' fixed='top' className='menuweb'>
         <Container>
-          <Navbar.Brand as={Link} to='/admin/dashboard'><img src={logocoffee} width={100} alt='logo-coffee-time' /></Navbar.Brand>
+          <Navbar.Brand as={Link} to='dashboard'><img src={logocoffee} width={100} alt='logo-coffee-time' /></Navbar.Brand>
           <Navbar.Toggle onClick={handleShow} aria-controls='offcanvasMenuweb' />
           <Navbar.Offcanvas
             id='offcanvasMenuweb'
@@ -35,7 +35,7 @@ export function MenuAdmin () {
             <Offcanvas.Body>
               <Nav className='me-auto my-2 my-lg-0'>
                 <NavLink to='dashboard' className='nav-link' onClick={handleClose}>DashBoard</NavLink>
-                <NavLink to='listDrinks' className='nav-link' onClick={handleClose}>
+                <NavLink to='list-drinks' className='nav-link' onClick={handleClose}>
                   Drinks
                 </NavLink>
                 <button

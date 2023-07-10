@@ -1,20 +1,33 @@
-import { useState } from 'react'
-import serviceDrinks from '../services/drinks'
+import { useEffect, useState } from 'react'
+// import serviceDrinks from '../services/drinks'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchDrinks, getPostsStatus, selectAllPosts } from '../features/drinks/drinkSlice'
 
 export function useKeywordEmphasis () {
   const [keywordEmphasis, setKeywordEmphasis] = useState([])
 
-  const getDrinks = async (search) => {
+  const dispatch = useDispatch()
+  const drinks = useSelector(selectAllPosts)
+  const postStatus = useSelector(getPostsStatus)
+
+  useEffect(() => {
+    if (postStatus === 'idle') {
+      dispatch(fetchDrinks())
+    }
+  }, [postStatus, dispatch])
+
+  const getDrinks = (search) => {
     if (search === '') {
       setKeywordEmphasis(null)
       return null
     }
-    const responseDrinks = await serviceDrinks.getAlldrinks(search)
+
+    /* const responseDrinks = await serviceDrinks.getAlldrinks(search)
 
     if (responseDrinks === null || responseDrinks.length === 0) {
       setKeywordEmphasis(null)
       return null
-    }
+    } */
 
     /* this my first option but .flatmap has better performance
       .filter((drink) => {
@@ -36,8 +49,8 @@ export function useKeywordEmphasis () {
         })
     */
 
-    const newkeywordEmphasis = responseDrinks.flatMap(drink => {
-      const { id, title, description, ingredients, image } = drink
+    const newkeywordEmphasis = drinks.flatMap(drink => {
+      const { id, title, description, ingredients, images } = drink
 
       if (
         title.includes(search) ||
@@ -57,7 +70,7 @@ export function useKeywordEmphasis () {
             title,
             description,
             ingredients,
-            image
+            images
           }
         )
       } else {

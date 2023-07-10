@@ -1,11 +1,7 @@
-import { useState } from 'react'
-import { ModalDetail } from '../ModalDetail/ModalDetail'
-
-export function ItemResult ({ id, replacetitle, replaceingredients, replacedescription, title, description, ingredients, image }) {
-  const [modalShow, setModalShow] = useState(false)
+export function ItemResult ({ id, replacetitle, replaceingredients, replacedescription, title, description, ingredients, images, handleDetail }) {
   return (
     <>
-      <li key={id} className='coincidences-item' onClick={() => setModalShow(true)}>
+      <li key={id} className='coincidences-item' onClick={() => handleDetail(title, description, ingredients, images)}>
         <div className='text-black'>
           <strong dangerouslySetInnerHTML={{ __html: replacetitle }} />
           <div>
@@ -14,14 +10,7 @@ export function ItemResult ({ id, replacetitle, replaceingredients, replacedescr
           </div>
         </div>
       </li>
-      <ModalDetail
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        title={title}
-        description={description}
-        ingredients={ingredients}
-        image={image}
-      />
+
     </>
   )
 }

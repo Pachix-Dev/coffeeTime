@@ -1,0 +1,41 @@
+.gallery {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    overflow-x: scroll;
+    scroll-snap-type: both mandatory;
+    cursor: pointer;
+}
+
+.gallery:has(>:only-child) {
+    overflow-x: hidden;
+    cursor: none;
+}
+
+
+.gallery_item {
+    scroll-snap-align: center;
+    display: inline-block;
+    border-radius: 3px;
+    font-size: 0;
+    min-width: 75%;
+    height: 300px;
+}
+
+.gallery_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.active {
+    scroll-snap-type: unset;
+}
+
+.modalTicket span {
+    background-color: #29a19c;
+    padding: 3px 6px;
+    border-radius: 10px;
+    margin-right: 5px;
+    display: inline-block;
+}

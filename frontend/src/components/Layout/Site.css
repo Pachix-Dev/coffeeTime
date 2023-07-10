@@ -119,6 +119,39 @@ label {
     color: black;
 }
 
+.link-create-drink {
+    text-decoration: none;
+    color: white;
+    background-color: #007a5c;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+}
+
+.link-create-drink:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #0c3b2f;
+
+}
+
+.header-drinks {
+    display: flex;
+    justify-content: space-between
+}
+
+.action-create {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.notification-system {
+    position: fixed;
+    right: 0;
+
+}
+
 @media(width<=540px) {
     .upload-image-wrapper {
         grid-template-columns: repeat(3, 1fr);

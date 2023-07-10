@@ -10,17 +10,17 @@
   },
   "dependencies": {
     "bootstrap": "5.2.3",
-    "canvas-confetti": "1.6.0",    
+    "canvas-confetti": "1.6.0",
     "framer-motion": "10.12.9",
-    "intersection-observer": "0.12.2",    
+    "intersection-observer": "0.12.2",
     "react": "18.2.0",
     "react-bootstrap": "2.7.2",
     "react-content-loader": "6.2.1",
     "react-dom": "18.2.0",
     "react-google-recaptcha": "3.1.0",
     "react-helmet": "6.1.0",
-    "react-router": "6.10.0",
-    "react-router-dom": "6.10.0"   
+    "react-router": "6.14.1",
+    "react-router-dom": "6.14.1"
   },
   "devDependencies": {
     "@types/react": "18.0.28",
@@ -29,5 +29,4 @@
     "vite": "4.3.9"
   },
   "homepage": "coffeeTime"
-  
 }
