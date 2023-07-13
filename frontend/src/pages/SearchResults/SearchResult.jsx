@@ -5,9 +5,11 @@ import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 import { useKeywordEmphasis } from '../../hooks/useKeywordEmphasis'
 import './SearchResult.css'
-import { useEffect, useRef, Suspense, lazy } from 'react'
+import { useEffect, useRef, Suspense, lazy, useState } from 'react'
 import LoaderSearchResults from '../../components/Loaders/LoaderSearchResults'
 import { Helmet } from 'react-helmet'
+import { ModalDetail } from '../../components/ModalDetail/ModalDetail'
+import { flushSync } from 'react-dom'
 
 const SearchResultCard = lazy(() => delayForDemo(import('../../components/SearchResultCard/SearchResultCard')))
 
@@ -21,6 +23,15 @@ export function SearchResults () {
   const { keyword } = useParams()
   const { keywordEmphasis, getDrinks } = useKeywordEmphasis()
   const firstRender = useRef(true)
+  const [showModalDetail, setShowModalDetail] = useState({ show: false, title: '', description: '', ingredients: '', images: '' })
+
+  const handleDetail = (title, description, ingredients, images) => {
+    document.startViewTransition(() => {
+      flushSync(() => {
+        setShowModalDetail({ show: true, title, description, ingredients, images })
+      })
+    })
+  }
 
   useEffect(() => {
     getDrinks(keyword)
@@ -51,6 +62,7 @@ export function SearchResults () {
                       description={description}
                       ingredients={ingredients}
                       images={images}
+                      handleDetail={handleDetail}
                     />
                   </Suspense>
                 </Col>
@@ -58,6 +70,15 @@ export function SearchResults () {
             })
             : firstRender.current ? '' : <p className='pt-5'> Sorry we couldn't find what you were looking for</p>)}
         </Row>
+
+        <ModalDetail
+          show={showModalDetail?.show}
+          onHide={() => setShowModalDetail({ show: false })}
+          title={showModalDetail?.title}
+          description={showModalDetail?.description}
+          ingredients={showModalDetail?.ingredients}
+          images={showModalDetail?.images}
+        />
       </Container>
     </>
   )

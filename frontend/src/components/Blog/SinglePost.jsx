@@ -16,7 +16,12 @@ export default function SinglePost ({ id, title, body, excerpt, tags, image, dat
           <figure>
             <div>
               <span>
-                <img src={image} className='w-100' alt={beautifyURL(title)} />
+                <img
+                  src={image}
+                  className='w-100'
+                  alt={beautifyURL(title)}
+                  style={{ viewTransitionName: `post-${id}` }}
+                />
               </span>
             </div>
           </figure>

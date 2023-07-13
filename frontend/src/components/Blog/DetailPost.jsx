@@ -60,7 +60,7 @@ export default function DetailPost () {
             })}
             </div>
 
-          <img src={post.image} className='w-100' alt={beautifyURL(post.title)} />
+          <img src={post.image} className='w-100' alt={beautifyURL(post.title)} style={{ viewTransitionName: `post-${post.id}` }} />
           <p className='mt-5'><strong>Publised on</strong> {beautifyDate(post.datePublished)}</p>
           <p>{post.body}</p>
           </div>

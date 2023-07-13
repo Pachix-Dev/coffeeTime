@@ -7,6 +7,7 @@ import './Blog.css'
 
 export default function Blog () {
   const { categories } = useCategories()
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
