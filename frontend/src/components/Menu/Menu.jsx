@@ -1,4 +1,3 @@
-
 import './Menu.css'
 import logocoffee from '../../assets/img/coffeeTimelogo2.png'
 import Container from 'react-bootstrap/Container'
@@ -16,7 +15,7 @@ export function Menu () {
   const handleClose = () => setShow(false)
   return (
     <>
-      <Navbar bg='dark' expand='lg' sticky='top' className='menuweb'>
+      <Navbar bg='dark' expand='lg' fixed='top' className='menuweb'>
         <Container>
           <Navbar.Brand as={Link} to='/'><img src={logocoffee} width={100} alt='logo-coffee-time' /></Navbar.Brand>
           <Navbar.Toggle onClick={handleShow} />
